@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# About
 
-Repository for the ComeOn website :)
+Repository for the ComeOn :)
 Uses CRA while SSR is not important.
