@@ -1,29 +1,28 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
+import axios from "axios";
 
-export const useApiGet = (url) => {
+export const useApiPost = (url) => {
     const [data, setData] = useState(null);
     const [error, setError] = useState(false);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
 
-    const getAPIData = async () => {
+    const postData = (dataHeader) => {
         setLoading(true);
-        fetch(url)
-            .then((response) => response.json())
-            .then(response => {
-                setData(response);
-                setLoading(false);
-            })
-            .catch((error) => {
-                console.log(error);
-                setError(true);
-                setLoading(false);
-            });
+        axios.post(url, dataHeader).then(res => {
+            setLoading(false);
+            // console.log(res);
+            setData(res)
+        }).catch(err => {
+            // console.log(err);
+            setLoading(false);
+            setError(err)
+        })
     }
 
 
-    useEffect(() => {
-        getAPIData()
-    }, []);
+    // useEffect(() => {
+    //     postData()
+    // }, [url]);
 
-    return {data, error, loading};
+    return {data, error, loading, postData};
 };

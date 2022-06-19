@@ -2,7 +2,7 @@
     width: 30%;
     height: 450px;
     background-color: #ffffff;
-    border-radius: 10px;
+    border-radius: 7px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -35,3 +35,48 @@
     cursor: pointer;
     background-color: #222222;
 }
+
+.error {
+    width: 75%;
+    height: 50px;
+    background-color: #ffa3a3;
+    color: #bd3449;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    border-radius: 7px;
+}
+
+@media only screen and (max-width: 1500px) {
+    .container {
+        width: 600px;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .container {
+        width: 85%;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .sign_in_btn {
+        width: 85%;
+    }
+
+    .title {
+        font-size: 22px;
+    }
+
+    .error {
+        width: 85%;
+        font-size: 15px;
+    }
+
+    .sign_in_btn {
+        font-size: 17px;
+    }
+}
+

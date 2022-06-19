@@ -1,0 +1,21 @@
+.container {
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    background-color: #fefefe;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.games_wrapper {
+    width: 90%;
+    height: auto;
+    display: flex;
+}
+
+@media only screen and (max-width: 1000px) {
+    .games_wrapper {
+        flex-direction: column-reverse;
+    }
+}

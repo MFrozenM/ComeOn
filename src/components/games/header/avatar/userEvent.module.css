@@ -1,0 +1,29 @@
+.container {
+    width: 55%;
+    height: auto;
+    display: flex;
+    color: #070707;
+    flex-direction: column;
+    flex-grow: 2;
+}
+
+.name {
+    width: fit-content;
+    height: 100%;
+    font-size: 20px;
+    display: flex;
+    padding-left: 20px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.event {
+    width: fit-content;
+    height: 100%;
+    font-size: 15px;
+    text-align: start;
+    display: flex;
+    padding-left: 20px;
+    justify-content: flex-start;
+    align-items: center;
+}

@@ -1,0 +1,56 @@
+.container {
+    width: 155px;
+    height: 45px;
+    background-color: #070707;
+    color: white;
+    margin-top: 40px;
+    border-radius: 5px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 300ms;
+}
+
+.container:hover {
+    cursor: pointer;
+    background-color: #303030;
+}
+
+.play_text {
+    width: auto;
+    height: auto;
+    margin-left: 30px;
+    font-size: 17px;
+    transition: margin-left 0.3s;
+}
+
+.arrow_icon {
+    width: 30px;
+    height: 30px;
+    fill: white;
+    position: absolute;
+    transform: translateX(-45px);
+    transition: transform 0.3s;
+}
+
+.container:hover .play_text {
+    cursor: pointer;
+    margin-left: 0;
+}
+
+.container:hover .arrow_icon {
+    cursor: pointer;
+    transform: translateX(-100px);
+}
+
+@media only screen and (max-width: 800px) {
+    .container {
+        width: 100%;
+    }
+
+    .container:hover .arrow_icon {
+        cursor: pointer;
+        transform: translateX(-400px);
+    }
+}

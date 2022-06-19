@@ -1,0 +1,119 @@
+.container {
+    width: 95%;
+    height: auto;
+    display: flex;
+}
+
+.game_icon {
+    width: 180px;
+    height: 180px;
+    border-radius: 5px;
+}
+
+.game_info_wrapper {
+    width: 80%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: #070707;
+    padding-left: 30px;
+}
+
+.game_name {
+    margin: 0;
+}
+
+.game_description {
+    width: auto;
+    height: auto;
+    font-size: 18px;
+    display: flex;
+    margin-top: 20px;
+    text-align: start;
+}
+
+.play_btn {
+    width: 155px;
+    height: 45px;
+    background-color: #070707;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    margin: 30px 50px 0 auto;
+    position: relative;
+    align-items: center;
+    overflow: hidden;
+    transition: background-color 300ms;
+}
+
+.play_btn:hover {
+    cursor: pointer;
+    background-color: #303030;
+}
+
+.play_text {
+    width: auto;
+    height: auto;
+    margin-right: 30px;
+    font-size: 20px;
+    transition: margin-right 0.3s;
+}
+
+.arrow_icon {
+    width: 30px;
+    height: 30px;
+    fill: white;
+    position: absolute;
+    transform: rotate(180deg) translateX(-35px);
+    transition: transform 0.3s;
+}
+
+.play_btn:hover .play_text {
+    cursor: pointer;
+    margin-right: 0;
+}
+
+.play_btn:hover .arrow_icon {
+    cursor: pointer;
+    transform: rotate(180deg) translateX(-100px);
+}
+
+@media only screen and (max-width: 800px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .game_icon {
+        width: 400px;
+        height: 400px;
+    }
+
+    .game_name {
+        margin-top: 30px;
+    }
+
+    .play_btn {
+        width: 100%;
+        height: 55px;
+    }
+
+    .game_info_wrapper {
+        padding-left: 0;
+    }
+
+    .play_btn:hover .arrow_icon {
+        cursor: pointer;
+        transform: rotate(180deg) translateX(-400px);
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .game_icon {
+        width: 300px;
+        height: 300px;
+    }
+}

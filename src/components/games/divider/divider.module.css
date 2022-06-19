@@ -1,0 +1,6 @@
+.container {
+    width: 95%;
+    height: 2px;
+    min-height: 2px;
+    background-color: #d7d7d7;
+}

@@ -2,8 +2,7 @@ import {act, render, screen} from "@testing-library/react";
 import {BrowserRouter} from "react-router-dom";
 import {fireEvent} from "@testing-library/dom";
 import React from "react";
-import Avatar from "../avatar/avatar";
-import App from "../../../../App";
+import App from "../../../App";
 
 const userLogin = async () => {
     const userInput = screen.getByTestId('username-input');
@@ -16,12 +15,10 @@ const userLogin = async () => {
     fireEvent.change(passwordInput, {target: {value: 'secret'}});
 
 
-    await act(() => {
-        fireEvent.click(signInBtn)
-    })
+    fireEvent.click(signInBtn)
 }
 
-describe("Test user avatar", () => {
+describe("Test search with search input", () => {
 
     beforeEach(() => render(
         <BrowserRouter>
@@ -29,29 +26,54 @@ describe("Test user avatar", () => {
         </BrowserRouter>
     ))
 
-    test('Name should be Rebecka Awesome', async () => {
-
+    test('Search input works', async () => {
         userLogin().then(async () => {
             await new Promise((r) => setTimeout(r, 500));
-            const name = screen.getByTestId('name');
-            expect(name.textContent).toBe('Rebecka Awesome');
+
+            const searchInput = screen.getByTestId('search-input');
+            fireEvent.change(searchInput, {target: {value: 'jack a'}});
+
+            expect(searchInput.value).toBe('jack a');
+
         })
 
     })
 
-    test('Event should be Rebecka Awesome', async () => {
+    test('Items should be 2 on searching sta', async () => {
 
         userLogin().then(async () => {
             await new Promise((r) => setTimeout(r, 500));
-            const name = screen.getByTestId('event');
-            expect(name.textContent).toBe('Last seen gambling on Starburst.');
+
+            const searchInput = screen.getByTestId('search-input');
+            const gamesWrapper = screen.getByTestId('games-wrapper');
+
+            fireEvent.change(searchInput, {target: {value: 'sta'}});
+
+            await new Promise((r) => setTimeout(r, 500));
+
+            expect(gamesWrapper.children).toHaveLength(2)
         })
 
     })
 
+    test('Items should be 1 on searching jack h', async () => {
+        userLogin().then(async () => {
+            await new Promise((r) => setTimeout(r, 500));
+
+            const searchInput = screen.getByTestId('search-input');
+            const gamesWrapper = screen.getByTestId('games-wrapper');
+
+            fireEvent.change(searchInput, {target: {value: 'jack a'}});
+
+            await new Promise((r) => setTimeout(r, 500));
+
+            expect(gamesWrapper.children).toHaveLength(1)
+        })
+    })
 })
 
-describe("Log Out tests", () => {
+
+describe("Test search with categories", () => {
 
     beforeEach(() => render(
         <BrowserRouter>
@@ -59,45 +81,95 @@ describe("Log Out tests", () => {
         </BrowserRouter>
     ))
 
-    test('Log out button should have the expected text', async () => {
+    beforeEach(() => {
+        userLogin().then(async () => {
+            await new Promise((r) => setTimeout(r, 1500));
+        })
+    })
 
+    test('Search by active category', async () => {
         userLogin().then(async () => {
             await new Promise((r) => setTimeout(r, 500));
-            const logOutBtn = screen.getByTestId('log-out');
-            expect(logOutBtn.textContent).toBe('Log Out');
+
+            const category_1 = screen.getByTestId('category-1');
+            const gamesWrapper = screen.getByTestId('games-wrapper');
+
+            fireEvent.click(category_1);
+
+            await new Promise((r) => setTimeout(r, 500));
+
+            // Should render 3 games and 2 dividers
+            expect(gamesWrapper.children).toHaveLength(5)
         })
 
     })
 
-    test('Log out button should change the text to loading', async () => {
+    test('active category color should change', async () => {
 
         userLogin().then(async () => {
             await new Promise((r) => setTimeout(r, 500));
-            const logOutBtn = screen.getByTestId('log-out');
 
-            await act(() => {
-                fireEvent.click(logOutBtn)
-            }).then(async () => {
-                expect(logOutBtn.textContent).toBe('Loading');
-            });
+            const category_1 = screen.getByTestId('category-1');
+
+            fireEvent.click(category_1);
+            const styles = getComputedStyle(category_1);
+
+            expect(styles.color).toBe("rgb(141, 180, 13)");
         })
 
     })
+})
 
-    test('Log out button should redirect to login page', async () => {
 
+describe("Test search by categories and search input", () => {
+    beforeEach(() => render(
+        <BrowserRouter>
+            <App/>
+        </BrowserRouter>
+    ))
+
+    beforeEach(() => {
         userLogin().then(async () => {
-            await new Promise((r) => setTimeout(r, 500));
-            const logOutBtn = screen.getByTestId('log-out');
+            await new Promise((r) => setTimeout(r, 1500));
+        })
+    })
 
-            await act(() => {
-                fireEvent.click(logOutBtn)
-            }).then(async () => {
-                await new Promise((r) => setTimeout(r, 2000));
-                expect(history.location.pathname).toBe('/');
-            });
+    test('Search by search input sta and categories id 1 (VIDEO SLOTS)', async () => {
+        userLogin().then(async () => {
+
+            await new Promise((r) => setTimeout(r, 500));
+            const searchInput = screen.getByTestId('search-input');
+            const gamesWrapper = screen.getByTestId('games-wrapper');
+            const category_1 = screen.getByTestId('category-1');
+
+
+            fireEvent.change(searchInput, {target: {value: 'sta'}});
+            fireEvent.click(category_1);
+
+            await new Promise((r) => setTimeout(r, 500));
+
+            expect(gamesWrapper.children).toHaveLength(1)
         })
 
+
+    })
+
+    test('Search by search input sta and categories id 0 (VIDEO SLOTS)', async () => {
+        userLogin().then(async () => {
+            await new Promise((r) => setTimeout(r, 500));
+
+            const searchInput = screen.getByTestId('search-input');
+            const gamesWrapper = screen.getByTestId('games-wrapper');
+            const category_0 = screen.getByTestId('category-0');
+
+            fireEvent.change(searchInput, {target: {value: 'sta'}});
+            fireEvent.click(category_0);
+
+            await new Promise((r) => setTimeout(r, 500));
+
+            // 2 games and 1 divider
+            expect(gamesWrapper.children).toHaveLength(3)
+        })
     })
 
 })

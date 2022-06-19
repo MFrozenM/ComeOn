@@ -3,6 +3,9 @@ import '@testing-library/jest-dom'
 import {useApiGet} from "../useApiGet";
 import {renderHook} from "@testing-library/react-hooks";
 
+// Connect to the internet.
+// This test suite uses a secure connection ( https://randomuser.me/api/ ).
+// otherwise it shouldn't work.
 describe("Data state", () => {
 
     test('Data should be fetched after correct api call', async () => {

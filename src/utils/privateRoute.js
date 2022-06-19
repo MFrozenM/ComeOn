@@ -1,16 +1,13 @@
 import React from "react";
-import {Route, useNavigate} from "react-router-dom";
+import {Navigate} from "react-router-dom";
+import {useAuth} from "../components/login/stores/authStore";
 
-function PrivateRoute({children, ...rest}) {
-    // let auth = useAuth();
-    const navigate = useNavigate();
-    return (
-        <Route
-            {...rest}
-            render={() => navigate
-                ? children
-                : navigate("/login")
-            }
-        />
-    );
-}
+export const ProtectedRoute = ({children}) => {
+    const auth = useAuth((state) => state.isAuth)
+
+    if (!auth) {
+        return <Navigate to="/login" replace/>;
+    }
+
+    return children;
+};

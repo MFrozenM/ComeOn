@@ -14,7 +14,12 @@ window.comeon = function () {
                 a.innerHTML = "";
                 let m = e[t].src, s = document.createElement("iframe");
                 s.frameBorder = 0;
-                s.width = "640px"; s.height = "480px"; s.scrolling = "no"; s.id = "game"; s.setAttribute("src", m);a.appendChild(s)
+                s.width = "640px";
+                s.height = "480px";
+                s.scrolling = "no";
+                s.id = "game";
+                s.setAttribute("src", m);
+                a.appendChild(s)
             }
         }
     }

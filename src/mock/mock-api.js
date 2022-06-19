@@ -25,7 +25,7 @@ module.exports = (req, res, next) => {
         if(req.path === '/login') {
             const username = req.body.username;
             const password = req.body.password;
-            console.log(username);
+            // console.log(username);
             if (username in players && players[username].password === password) {
                 const player = Object.assign({}, players[username]); //Creating a copy of player
                 delete player.password;
@@ -60,7 +60,7 @@ module.exports = (req, res, next) => {
                         if(req.path === '/login') {
                             const username = req.body.username;
                             const password = req.body.password;
-                            console.log(username);
+                            // console.log(username);
                             if (username in players && players[username].password === password) {
                                 const player = Object.assign({}, players[username]); //Creating a copy of player
                                 delete player.password;

@@ -20,3 +20,10 @@
     outline: none;
     margin-top: 30px;
 }
+
+@media only screen and (max-width: 700px) {
+    .input {
+        width: calc(85% - 30px);
+        font-size: 17px;
+    }
+}
