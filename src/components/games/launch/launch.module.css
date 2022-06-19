@@ -1,0 +1,30 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    background-color: rgba(14, 14, 14, 0.95);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.guide {
+    width: 500px;
+    height: 50px;
+    background-color: #a3ffaf;
+    color: #0e6100;
+    font-size: 20px;
+    display: flex;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    position: absolute;
+    bottom: 50px;
+    left: calc((100% - 500px) / 2);
+    border-radius: 7px;
+}

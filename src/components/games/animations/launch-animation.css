@@ -1,0 +1,16 @@
+.games-error-animation-enter {
+    opacity: 0;
+    transform: scale(0.9);
+}
+.games-error-animation-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 300ms, transform 300ms;
+}
+.games-error-animation-exit {
+    opacity: 0;
+}
+.games-error-animation-exit-active {
+    opacity: 0;
+    transition: opacity 300ms, transform 300ms;
+}
